@@ -187,7 +187,7 @@ function computer (category){
     let aleatorio = Math.floor(Math.random() * (category.length))
     let array = []
 
-    palabra = category[aleatorio].name
+    palabra = category[aleatorio].name.toUpperCase()
 
     console.log(palabra)
     clueContainer.innerHTML = category[aleatorio].clue
