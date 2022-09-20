@@ -251,3 +251,35 @@ figure img{
     margin: 24px 0px 24px 0px;
     border: 2px solid black;
 }
+
+.players-main-container{
+    display: none;
+    width: 100%;
+    justify-content: center;
+
+}
+form{
+    margin: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-family: 'Press Start 2P', cursive;
+    border: 2px solid black;
+    padding: 24px;
+    background: rgba(128, 128, 128, 0.21);
+
+}
+
+form:nth-child(1) input{
+    width: 210px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+
+textarea{
+    resize: none;
+
+    border-radius: 4px;
+    border: 1px solid black;
+}

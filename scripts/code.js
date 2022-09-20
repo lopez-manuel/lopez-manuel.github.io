@@ -15,13 +15,19 @@ let pcScreen = document.getElementById("pc-screen")
 let lettersOutContainer = document.getElementById("lettersout-container")
 let imgContainer = document.getElementById("img-container")
 let clueContainer = document.getElementById("clue-container")
+let playersMainContainer = document.getElementById("players-container")
+let wordPlayer = document.getElementById("word-2p")
+let cluePlayer = document.getElementById("clue-2p")
+let playerSubmit = document.getElementById("player-submit")
 let idArray = []
 let word =""
 let strikes = 0
 let count = 0
 let x= 0
-let gameOver = false
 let wordComplete = []
+let cat = 0
+let wordsDone = []
+let totalWords = 0
 
 
 
@@ -34,6 +40,9 @@ startGame.addEventListener("click", () =>{
 
         alert("selecciono jugar con un amigo")
         welcomeScreen.style.display = "none"
+        playersMainContainer.style.display = "grid"
+
+
 
     }
 
@@ -56,6 +65,7 @@ selectCategory.addEventListener("click", ()=>{
     if(animalsCat.checked){
         console.log("categoria animales")
         word = computer(animals)
+        cat = 1
         checkLetters()
         categoriesScreen.style.display = "none"
         nextWord.style.display = "none"
@@ -64,17 +74,55 @@ selectCategory.addEventListener("click", ()=>{
 
     }
     else if (superHerosCat.checked){
+        console.log("categoria super heroes")
+        word = computer(superHeros)
+        cat = 2
+        checkLetters()
+        categoriesScreen.style.display = "none"
+        nextWord.style.display = "none"
+        check.style.display = "block"
+        pcScreen.style.display = "grid"
 
     }
     else if (disneyCat.checked){
+        console.log("categoria disney")
+        word = computer(disneyCharacters)
+        cat = 3
+        checkLetters()
+        categoriesScreen.style.display = "none"
+        nextWord.style.display = "none"
+        check.style.display = "block"
+        pcScreen.style.display = "grid"
 
     }
     else if (pixartCat.checked){
-
+        console.log("categoria pixar")
+        word = computer(pixarCharacters)
+        cat = 4
+        checkLetters()
+        categoriesScreen.style.display = "none"
+        nextWord.style.display = "none"
+        check.style.display = "block"
+        pcScreen.style.display = "grid"
     }
     else {
 
     }
+
+
+})
+
+//evento que empieza la partida de 2 jugadores
+playerSubmit.addEventListener("click", () =>{
+
+    word = wordToArray(wordPlayer.value)
+    clueContainer.innerHTML = cluePlayer.value
+    checkLetters()
+    playersMainContainer.style.display = "none"
+    check.style.display = "block"
+    pcScreen.style.display = "grid"
+    nextWord.style.display = "none"
+
 
 
 })
@@ -105,7 +153,7 @@ check.addEventListener("click", () =>{
                 console.log(zebra)
                 zebra.innerHTML = inputLetter.value.toUpperCase()
                 count++
-                wordComplete[j] = inputLetter.value
+                wordComplete[j] = inputLetter.value.toUpperCase()
                 x=checkWord()
 
 
@@ -168,7 +216,18 @@ check.addEventListener("click", () =>{
 
 nextWord.addEventListener("click", () =>{
 
-    word=computer(animals)
+    switch (cat) {
+        case 1: word=computer(animals);
+        break
+        case 2: word=computer(superHeros);
+        break
+        case 3: word=computer(disneyCharacters);
+        break
+        case 4: word=computer(pixarCharacters);
+        break
+
+    }
+
     checkLetters()
     check.style.display = "block"
     nextWord.style.display = "none"
@@ -183,17 +242,45 @@ nextWord.addEventListener("click", () =>{
 //funcion que escoge la palabra del arreglo de la categoria y almacena letra por letra en otro arreglo
 function computer (category){
 
-    let palabra = ""
-    let aleatorio = Math.floor(Math.random() * (category.length))
+    let wordC = ""
+    let random = Math.floor(Math.random() * (category.length))
     let array = []
 
-    palabra = category[aleatorio].name.toUpperCase()
 
-    console.log(palabra)
-    clueContainer.innerHTML = category[aleatorio].clue
+    wordC = category[random].name.toUpperCase()
 
-    for (let i = 0; i < palabra.length; i++) {
-        array[i] = palabra[i]
+
+
+
+    for (let z = 0; z <wordsDone.length ; z++) {
+
+        if(totalWords === category.length){
+
+            alert("se usaron todas las palabras")
+            pcScreen.style.display ="none"
+
+        }
+
+        else{
+           if(wordC === wordsDone[z]){
+               random = Math.floor(Math.random() * (category.length))
+               wordC = category[random].name.toUpperCase()
+               z=0
+           }
+           else {
+
+           }
+        }
+
+    }
+
+    wordsDone[random] = wordC
+    totalWords ++
+    console.log(wordC)
+    clueContainer.innerHTML = category[random].clue
+
+    for (let i = 0; i < wordC.length; i++) {
+        array[i] = wordC[i]
     }
 
     return array
@@ -243,5 +330,15 @@ function nextGame (){
     wordComplete = []
 
 
+
+}
+
+function wordToArray (wordC){
+    let array = []
+    for (let i = 0; i < wordC.length; i++) {
+        array[i] = wordC[i].toUpperCase()
+    }
+
+    return array
 
 }

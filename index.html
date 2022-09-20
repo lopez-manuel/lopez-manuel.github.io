@@ -127,6 +127,9 @@
                     <img src="./images/ahorcado/0.png" alt="1">
                 </figure>
             </div>
+            <div>
+                <button class="btn">Menu principal</button>
+            </div>
 
            
 
@@ -147,11 +150,28 @@
 
         </div>
 
-        <div class="2p">
+        <div class="players">
+            <div class="players-main-container" id="players-container">
+                <form action="#">
+                    <label for="word-2p" >Palabra: <input placeholder="introduce una palabra sin espacios" type="text" required id="word-2p"></label>
+
+
+                    <label for="clue-2p">Pista:</label>
+                    <textarea name=""  id="clue-2p" cols="2" rows="5" maxlength="150" placeholder="Introduce una pequeña pista (opcional)"></textarea>
+
+
+                </form>
+
+                <button class="btn" id="player-submit">Jugar</button>
+
+            </div>
 
         </div>
 
     </div>
+    <script src="./scripts/pixar.js"></script>
+    <script src="./scripts/disney.js"></script>
+    <script src="./scripts/superheros.js"></script>
     <script src="./scripts/animals.js"></script>
     <script src="./scripts/code.js"></script>
 </body>
