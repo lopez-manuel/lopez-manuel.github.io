@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Codystar:wght@300&display=swap');
+
+:root{
+    --title-size: 50px;
+    --text-size: 18px;
+}
+
+h1{
+    font-family: 'Bebas Neue', cursive;
+    color: rgb(255, 255, 255);
+    font-size: var(--title-size);
+    font-weight: bold;
+}
+
+body{
+    margin: 0;
+    background-image: url("/images/wallpaper-login.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+main {
+ width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+main div{
+    width: 280px;
+    height: 300px;
+    display: grid;
+    grid-template-rows: auto;
+    place-items: center;
+    background: #c1bdbd6b;
+    font-size: var(--text-size);
+    font-family: Arial;
+    color: black;
+    border-radius: 32px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+input{
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+}
