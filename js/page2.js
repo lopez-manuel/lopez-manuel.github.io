@@ -17,6 +17,7 @@ nextButton.addEventListener("click", ()=>{
 
     if(clic == 6){
         clic = 1
+        nextButton.style.display = "none"
         heartC.style.display = "block"
     }
 
